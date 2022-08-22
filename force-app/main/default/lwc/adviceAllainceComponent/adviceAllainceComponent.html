@@ -1,0 +1,224 @@
+<template>
+    <lightning-tabset>
+        <lightning-tab label="Object">
+            Object Content !
+            <div class="slds-card" style="display: flex;">
+                <lightning-card title="OBJECT SELECTION" class="slds-m-around_medium">
+                    <div>
+                        <lightning-combobox name="SObject"
+                                        value={objName}
+                                        placeholder="Select Object"
+                                        options={options}
+                                        onchange={handleChanges}
+                                        style="width: 100px;">
+                    </lightning-combobox>
+                    <p>Selected Object is : {objName}</p>
+                    </div>
+                    <div class="slds-box">
+                        <lightning-input type="checkbox" label="Formula Field" name="input1" onchange={FormulaHandler}></lightning-input>
+                        <lightning-input type="checkbox" label="Roll Up" name="input2" onchange={RollupHandler}></lightning-input>
+                        <lightning-input type="checkbox" label="Lookups" name="input3" onchange={LookupHandler}></lightning-input>
+                        <lightning-input type="checkbox" label="Master-Detail" name="input4" onchange={MasterDetailHandler}></lightning-input>
+                    </div>
+                </lightning-card>
+            </div>
+            <lightning-card class="slds-m-around_medium">
+                <div>
+                    <div style="display: flex; margin-bottom:30px;">
+                        <div style="margin-left: 30px;">
+                            <span>All Fields</span>
+                        </div>
+                        <div style="margin-left: 30px;">
+                            <p>500</p>
+                            <p>Total</p>
+                        </div>
+                        <div style="margin-left: 30px;">
+                            <p>{totalAvailableFields}</p>
+                            <p>Available</p>
+                        </div>
+                        <div style="margin-left: 30px;">
+                            <p>{totalUsedFields}</p>
+                            <p>Used</p>
+                        </div>
+                    </div>
+                    <div style="display: flex; margin-bottom:30px;" if:true={FormulaFieldShow}>
+                        <div style="margin-left: 30px;">
+                            <span>Formula Field</span>
+                        </div>
+                        <div style="margin-left: 30px;">
+                            <p>500</p>
+                            <p>Total</p>
+                        </div>
+                        <div style="margin-left: 30px;">
+                            <p>0</p>
+                            <p>Available</p>
+                        </div>
+                        <div style="margin-left: 30px;">
+                            <p>0</p>
+                            <p>Used</p>
+                        </div>
+                    </div>
+                    <div style="display: flex; margin-bottom:30px;" if:true={RollUpShow}>
+                        <div style="margin-left: 30px;">
+                            <span>Roll Up</span>
+                        </div>
+                        <div style="margin-left: 30px;">
+                            <p>25</p>
+                            <p>Total</p>
+                        </div>
+                        <div style="margin-left: 30px;">
+                            <p>5</p>
+                            <p>Available</p>
+                        </div>
+                        <div style="margin-left: 30px;">
+                            <p>20</p>
+                            <p>Used</p>
+                        </div>
+                    </div>
+                    <div style="display: flex; margin-bottom:30px;" if:true={LookupShow}>
+                        <div style="margin-left: 30px;">
+                            <span>Lookups</span>
+                        </div>
+                        <div style="margin-left: 30px;">
+                            <p>40</p>
+                            <p>Total</p>
+                        </div>
+                        <div style="margin-left: 30px;">
+                            <p>5</p>
+                            <p>Available</p>
+                        </div>
+                        <div style="margin-left: 30px;">
+                            <p>35</p>
+                            <p>Used</p>
+                        </div>
+                    </div>
+                    <div style="display: flex;" if:true={MasterDetailShow}>
+                        <div style="margin-left: 30px;">
+                            <span>Master-Detail</span>
+                        </div>
+                        <div style="margin-left: 30px;">
+                            <p>2</p>
+                            <p>Total</p>
+                        </div>
+                        <div style="margin-left: 30px;">
+                            <p>2</p>
+                            <p>Available</p>
+                        </div>
+                        <div style="margin-left: 30px;">
+                            <p>0</p>
+                            <p>Used</p>
+                        </div>
+                    </div>
+                </div>
+            </lightning-card>
+        </lightning-tab>
+        <lightning-tab label="User Licenses">
+            User Licenses Content !
+            <lightning-card class="slds-m-around_medium">
+                <div>
+                    <div></div>
+                    <div></div>
+                    <div>I</div>
+                    <div></div>
+                </div>
+            </lightning-card>
+            <lightning-card class="slds-m-around_medium">
+                <div>
+                    <div style="display: flex; margin-bottom:30px;">
+                        <div style="margin-left: 30px;">
+                            <span>All User Licenses</span>
+                        </div>
+                        <div style="margin-left: 30px;">
+                            <p>500</p>
+                            <p>Total</p>
+                        </div>
+                        <div style="margin-left: 30px;">
+                            <p>425</p>
+                            <p>Available</p>
+                        </div>
+                        <div style="margin-left: 30px;">
+                            <p>75</p>
+                            <p>Used</p>
+                        </div>
+                    </div>
+                    <div style="display: flex; margin-bottom:30px;">
+                        <div style="margin-left: 30px;">
+                            <span>Platform User</span>
+                        </div>
+                        <div style="margin-left: 30px;">
+                            <p>Infinite</p>
+                            <p>Total</p>
+                        </div>
+                        <div style="margin-left: 30px;">
+                            <p>425</p>
+                            <p>Available</p>
+                        </div>
+                        <div style="margin-left: 30px;">
+                            <p>75</p>
+                            <p>Used</p>
+                        </div>
+                    </div>
+                    <div style="display: flex; margin-bottom:30px;">
+                        <div style="margin-left: 30px;">
+                            <span>Identity User</span>
+                        </div>
+                        <div style="margin-left: 30px;">
+                            <p>25</p>
+                            <p>Total</p>
+                        </div>
+                        <div style="margin-left: 30px;">
+                            <p>5</p>
+                            <p>Available</p>
+                        </div>
+                        <div style="margin-left: 30px;">
+                            <p>20</p>
+                            <p>Used</p>
+                        </div>
+                    </div>
+                    <div style="display: flex; margin-bottom:30px;">
+                        <div style="margin-left: 30px;">
+                            <span>Salesforce User</span>
+                        </div>
+                        <div style="margin-left: 30px;">
+                            <p>40</p>
+                            <p>Total</p>
+                        </div>
+                        <div style="margin-left: 30px;">
+                            <p>5</p>
+                            <p>Available</p>
+                        </div>
+                        <div style="margin-left: 30px;">
+                            <p>35</p>
+                            <p>Used</p>
+                        </div>
+                    </div>
+                </div>
+            </lightning-card>
+        </lightning-tab>
+        <lightning-tab label="Org Limit">
+            Org Limit Content !
+            <lightning-card class="slds-m-around_medium">
+                <template for:each={orgLimits} for:item="item">
+                    <div key={item.limitName} style="display: flex; margin-bottom:30px;">
+                        <div style="margin-left: 30px;">
+                            <span>{item.limitName}</span>
+                        </div>
+                        <div style="margin-left: 30px;">
+                            <p>{item.max}</p>
+                            <p>Total</p>
+                        </div>
+                        <div style="margin-left: 30px;">
+                            <p>{item.max}-{item.use}</p>
+                            <p>Available</p>
+                        </div>
+                        <div style="margin-left: 30px;">
+                            <p>{item.use}</p>
+                            <p>Used</p>
+                        </div>
+                    </div>
+                </template>
+            </lightning-card>
+            
+        </lightning-tab>
+    </lightning-tabset>
+</template>
