@@ -1,4 +1,4 @@
-// This file is generated as an Apex representation of the
+ // This file is generated as an Apex representation of the
 //     corresponding sObject and its fields.
 // This read-only file is used by the Apex Language Server to
 //     provide code smartness, and is deleted each time you

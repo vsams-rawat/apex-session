@@ -1,0 +1,57 @@
+<template>
+    <lightning-card>
+        <div class="HeaderClass" style="display: flex;">
+            <div class="selectClass" style="margin-left:20px;">
+                <select name="cars" id="cars" onchange={classHandler}>
+                    <option value="None">Select Class</option>
+                    <option value="First">1st Class</option>
+                    <option value="Second">2nd Class</option>
+                    <option value="Third">3rd Class</option>
+                    <option value="Four">4th Class</option>
+                    <option value="Five">5th Class</option>
+                    <option value="Six">6th Class</option>
+                    <option value="Seven">7th Class</option>
+                    <option value="Eight">8th Class</option>
+                    <option value="Nine">9th Class</option>
+                    <option value="Ten">10th Class</option>
+                    <option value="Eleven">11th Class</option>
+                    <option value="Twelve">12th Class</option>
+                </select>
+            </div>
+            <div class="checkTabularClass" style="margin-left: 75%;">
+                <lightning-input type="checkbox" label="Tabular View" onchange={tabularHandler}></lightning-input>
+            </div>
+            <div class="checkGraphicalClass" style="margin-left:20px;">
+                <lightning-input type="checkbox" label="Graphical View" onchange={graphicalHandler}></lightning-input>
+            </div>
+        </div>
+    </lightning-card>   
+    <div class="viewClass" style="display: flex;">
+        <div class="dataClass" style="width: 50%;">
+            <lightning-card if:true={tableFlag} title="Tabular View">
+                <lightning-datatable
+                    key-field="id"
+                    data={studentData}
+                    columns={columns}
+                    sorted-by={sortBy}
+                    sorted-direction={sortDirection}
+                    onsort={doSorting}
+                    onrowaction={handleRowAction}>
+                </lightning-datatable>
+            </lightning-card>
+        </div>
+        <div class="graphicalClass" style="width: 50%;">
+            <lightning-card if:true={graphFlag} title="Graphical View">
+                <div class="mainContainer" style="border: 1px solid black;">
+                    <template for:each={studentData} for:item="item">
+                        <div key={item.Id} class="seatClass" style="display: flex;">
+                            <div class="seats" onclick={getDivBox} style="width: 200px; height:50px; margin:10px; margin-left:20%; border: 1px solid black;"></div>
+                            <div class="seats" onclick={getDivBox} style="width: 200px; height:50px; margin:10px; margin-left:5%; border: 1px solid black;"></div>
+                        </div>
+                    </template>
+                </div>
+            </lightning-card>
+        </div>
+    </div>
+    
+</template>

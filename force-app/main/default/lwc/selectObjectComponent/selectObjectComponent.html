@@ -1,0 +1,60 @@
+<template>
+    <template if:true={first}>
+        <div class="slds-card">
+            <lightning-card title="OBJECT SELECTION" class="slds-m-around_medium">
+                <lightning-combobox name="SObject"
+                                    value={objName}
+                                    placeholder="Select Object"
+                                    options={options}
+                                    onchange={handleChanges}>
+                </lightning-combobox>
+                <p>Selected Object is : {objName}</p>
+            </lightning-card>
+        </div>
+        <lightning-button label="Next Page" onclick={secondPage}></lightning-button>
+    </template>
+    <template if:true={second}>
+        <lightning-card class="slds-m-around_medium">
+            <lightning-dual-listbox
+                    name="languages"
+                    label="Select Fields"
+                    source-label="Available Fields"
+                    selected-label="Selected Fields"
+                    field-level-help="Select Fields"
+                    options={optionsFields}
+                    onchange={handleChange}>
+            </lightning-dual-listbox>
+                <div style="overflow-wrap: break-word;">
+                    <p>Selected Fields are: {selectedFields}</p>
+                </div>
+                <div style="overflow-wrap: break-word;">
+                    {showQuery}
+                </div>
+
+                <div>
+                    <button class="slds-button slds-button_brand slds-m-around_medium" onclick={thirdPage}>View Records</button>
+                </div>
+        </lightning-card>
+    </template>
+
+    <template if:true={third}>
+        <div class="slds-card">
+            <lightning-card title={objName}>
+                <div class="btns" style="margin-bottom: 20px;">
+                    <button class="slds-button slds-button_neutral" onclick={exportToEXCEL}>Export EXCEL</button>
+                    <button class="slds-button slds-button_neutral" onclick={exportToCSV}>Export CSV</button>
+                    <button class="slds-button slds-button_neutral" onclick={sendCSV}>SEND CSV</button>
+                </div>
+                <!--      Data Table     -->
+                <div style="height: 500px;" class="table">
+                    <lightning-datatable
+                            key-field="Id"
+                            data={results.data}
+                            columns={columns}>
+                    </lightning-datatable>
+                </div>
+            </lightning-card>
+        </div>
+    </template>
+
+</template>

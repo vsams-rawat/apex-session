@@ -1,0 +1,72 @@
+<template>
+    <lightning-card title="Upload User CSV">
+        <lightning-file-upload
+            name="fileUploader"
+            accept={acceptedFormats}
+            record-id={recordId}
+            onuploadfinished={handleUploadFinished}
+            multiple
+        >
+        </lightning-file-upload>
+    </lightning-card> 
+    <div class="mainDiv" style="display: flex;">
+        <div class="slds-box slds-theme_default" style="width: 300px;">
+            <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered">
+                <thead>
+                    <tr>
+                        <th class="" scope="col">
+                            <div class="slds-truncate" title="User Name">User Name</div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={userObject} for:item="user">
+                        <tr key={user.Id}>
+                            <td onclick={handleUserClick} data-id={user.Id}>{user.Name}</td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </div>
+        <div class="slds-box slds-theme_default" style="width: 300px;">
+            <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered">
+                <thead>
+                    <tr>
+                        <th class="" scope="col">
+                            <div class="slds-truncate" title="Objects Name">{currentUserName} Object Names</div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={associateObjects} for:item="asObj">
+                        <tr key={asObj}>
+                            <td onclick={handleObjectClick} data-name={asObj}>{asObj}</td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </div>
+        <div class="slds-box slds-theme_default" style="width: 1000px;">
+            <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered">
+                <thead>
+                    <tr>
+                        <th class="" scope="col">
+                            <div class="slds-truncate" title="Fields Name"> Fields Name</div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={newData} for:item="data">
+                        <tr key={data.name}>
+                            <td>{data.name}</td>
+                            <template for:each={data.values} for:item="value">
+                            <td key={value}>{value}</td>
+                            </template>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </div>
+    </div>   
+ 
+</template>
